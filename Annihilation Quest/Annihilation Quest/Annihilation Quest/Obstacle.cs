@@ -35,7 +35,7 @@ namespace Annihilation_Quest
 
         public void Contact(Hero L)
         {
-            if (this.Hitbox.Top <= L.Hitbox.Bottom && this.Hitbox.Bottom > L.Hitbox.Bottom && this.Hitbox.Top > L.Hitbox.Top && L.Moving.Y >= 0)
+            if (this.Hitbox.Top <= L.Hitbox.Bottom && this.Hitbox.Bottom > L.Hitbox.Bottom && this.Hitbox.Top > L.Hitbox.Top && this.Hitbox.Right > L.Hitbox.Left && this.Hitbox.Left < L.Hitbox.Right && L.Moving.Y >= 0)
                 L.Moving = new Vector2(L.Moving.X, 0);
             if (this.Hitbox.Right >= L.Hitbox.Left && this.Hitbox.Left < L.Hitbox.Left && this.Hitbox.Right < L.Hitbox.Right  && L.Moving.X <= 0)
                 L.Moving = new Vector2(0, L.Moving.Y);
