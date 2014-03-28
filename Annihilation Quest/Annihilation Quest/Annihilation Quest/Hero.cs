@@ -16,8 +16,8 @@ namespace Annihilation_Quest
     {
 
 
-        public Hero(Vector2 size, Vector2 position, SpriteBatch sb, ContentManager c, int hp)
-            : base(size, position, sb, c, hp)
+        public Hero(Vector2 size, Vector2 position, SpriteBatch sb, ContentManager c, int hp, int speed)
+            : base(size, position, sb, c, hp, speed)
         {
             sprites.Add(c.Load<Texture2D>("Test Hero"));
         }

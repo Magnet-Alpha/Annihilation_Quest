@@ -19,6 +19,10 @@ namespace Annihilation_Quest
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Hero L;
+        Obstacle ground;
+        Obstacle wallL;
+        Obstacle wallR;
+        KeyboardState oldks;
 
         public Game1()
         {
@@ -47,7 +51,10 @@ namespace Annihilation_Quest
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            L = new Hero(new Vector2(64, 64), new Vector2(0, 0), spriteBatch, Content, 10);
+            L = new Hero(new Vector2(64, 64), new Vector2(100, 0), spriteBatch, Content, 10, 5);
+            ground = new Obstacle(new Vector2(800, 100), new Vector2(0, 400), spriteBatch);
+            wallL = new Obstacle(new Vector2(10, 480), new Vector2(0, 0), spriteBatch);
+            wallR = new Obstacle(new Vector2(10, 480), new Vector2(790, 0), spriteBatch);
             // TODO: use this.Content to load your game content here
         }
 
@@ -71,19 +78,26 @@ namespace Annihilation_Quest
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
 
+            int bonus = 1;
             KeyboardState ks = Keyboard.GetState();
             if (ks.IsKeyDown(Keys.Right))
-                L.Moving = new Vector2(1, 0);
+                L.Moving = new Vector2(1, L.Moving.Y);
             else if (ks.IsKeyDown(Keys.Left))
-                L.Moving = new Vector2(-1, 0);
-            else if (ks.IsKeyDown(Keys.Up))
-                L.Moving = new Vector2(0, -1);
-            else if (ks.IsKeyDown(Keys.Down))
-                L.Moving = new Vector2(0, 1);
+                L.Moving = new Vector2(-1, L.Moving.Y);
             else
-                L.Moving = new Vector2(0, 0);
+                L.Moving = new Vector2(0, L.Moving.Y);
+            if (ks.IsKeyDown(Keys.Up) && oldks.IsKeyUp(Keys.Up))
+                L.Moving = new Vector2(L.Moving.X, -8);
+            if (ks.IsKeyDown(Keys.Space))
+                bonus += 1;
 
+            L.SpeedBonus(bonus);
+            L.Gravity(gameTime);
+            ground.Contact(L);
+            wallL.Contact(L);
+            wallR.Contact(L);
             L.Move();
+            oldks = ks;
             base.Update(gameTime);
         }
 
