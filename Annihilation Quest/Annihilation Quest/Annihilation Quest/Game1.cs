@@ -19,10 +19,12 @@ namespace Annihilation_Quest
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Hero L;
-        Obstacle ground;
-        Obstacle wallL;
-        Obstacle wallR;
+        Ground ground;
+        Wall wallL;
+        Wall wallR;
+        Wall wallU;
         KeyboardState oldks;
+        List<Obstacle> O = new List<Obstacle>();
 
         public Game1()
         {
@@ -51,10 +53,14 @@ namespace Annihilation_Quest
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            L = new Hero(new Vector2(64, 64), new Vector2(100, 0), spriteBatch, Content, 10, 5);
-            ground = new Obstacle(new Vector2(800, 100), new Vector2(0, 400), spriteBatch);
-            wallL = new Obstacle(new Vector2(10, 480), new Vector2(0, 0), spriteBatch);
-            wallR = new Obstacle(new Vector2(10, 480), new Vector2(790, 0), spriteBatch);
+            L = new Hero(new Vector2(64, 128), new Vector2(360, 272), spriteBatch, Content, 10, 5);
+            ground = new Ground(new Vector2(4000, 100), new Vector2(-2000, 400), spriteBatch, Content);
+            wallL = new Wall(new Vector2(20, 1480), new Vector2(-2000, -1000), spriteBatch, Content);
+            wallR = new Wall(new Vector2(20, 1480), new Vector2(2000, -1000), spriteBatch, Content);
+            wallU = new Wall(new Vector2(800, 20), new Vector2(0, 0), spriteBatch, Content);
+            O.Add(ground);
+            O.Add(wallL);
+            O.Add(wallR);
             // TODO: use this.Content to load your game content here
         }
 
@@ -88,7 +94,7 @@ namespace Annihilation_Quest
                 L.Moving = new Vector2(0, L.Moving.Y);
             if (ks.IsKeyDown(Keys.Up) && oldks.IsKeyUp(Keys.Up))
                 L.Moving = new Vector2(L.Moving.X, -8);
-            if (ks.IsKeyDown(Keys.Space))
+            if (ks.IsKeyDown(Keys.C))
                 bonus += 1;
 
             L.SpeedBonus(bonus);
@@ -96,7 +102,11 @@ namespace Annihilation_Quest
             ground.Contact(L);
             wallL.Contact(L);
             wallR.Contact(L);
-            L.Move();
+            Vector2 P = L.Move();
+            foreach (Obstacle o in O)
+            {
+                o.Scrolling(-P);
+            }
             oldks = ks;
             base.Update(gameTime);
         }
@@ -109,6 +119,10 @@ namespace Annihilation_Quest
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
+            foreach (Obstacle o in O)
+            {
+                o.Draw();
+            }
             L.Draw();
 
             base.Draw(gameTime);

@@ -107,6 +107,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Ground.cs" />
     <Compile Include="Hero.cs" />
     <Compile Include="Hitbox.cs" />
     <Compile Include="Living.cs" />

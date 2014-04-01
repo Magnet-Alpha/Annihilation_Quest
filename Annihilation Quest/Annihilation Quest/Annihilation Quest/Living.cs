@@ -36,10 +36,11 @@ namespace Annihilation_Quest
             this.ospeed = speed;
         }
 
-        public void Move()
+        public Vector2 Move()
         {
-            this.Position = this.Position + new Vector2(this.Moving.X * this.Speed, this.Moving.Y);
-            this.Hitbox = new Rectangle((int)this.Position.X, (int)this.Position.Y, Hitbox.Width, Hitbox.Height);
+            //this.Position = this.Position + new Vector2(this.Moving.X * this.Speed, this.Moving.Y);
+            //this.Hitbox = new Rectangle((int)this.Position.X, (int)this.Position.Y, Hitbox.Width, Hitbox.Height);
+            return (new Vector2(this.Moving.X * this.Speed, this.Moving.Y));
         }
 
         public void Draw()
