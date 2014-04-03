@@ -43,7 +43,7 @@ namespace Annihilation_Quest
             return (new Vector2(this.Moving.X * this.Speed, this.Moving.Y));
         }
 
-        public void Draw()
+        public virtual void Draw()
         {
             sb.Begin();
             sb.Draw(sprites[0], Hitbox, Color.White);
@@ -52,7 +52,7 @@ namespace Annihilation_Quest
 
         public void Gravity(GameTime g)
         {
-            this.Moving = new Vector2(this.Moving.X, this.Moving.Y + 10 * (float)g.ElapsedGameTime.TotalSeconds);
+            this.Moving = new Vector2(this.Moving.X, this.Moving.Y + 12 * (float)g.ElapsedGameTime.TotalSeconds);
         }
 
         public void SpeedBonus(int bonus)

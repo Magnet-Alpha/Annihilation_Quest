@@ -19,6 +19,8 @@ namespace Annihilation_Quest
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Hero L;
+        Weapon M;
+        Monster N;
         Ground ground;
         Wall wallL;
         Wall wallR;
@@ -54,6 +56,8 @@ namespace Annihilation_Quest
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             L = new Hero(new Vector2(64, 128), new Vector2(360, 272), spriteBatch, Content, 10, 5);
+            M = new Weapon(new Vector2(32, 64), new Vector2(L.Position.X + 16, L.Position.Y + 64), spriteBatch, Content);
+            N = new Monster(new Vector2(64, 128), new Vector2(800, 272), spriteBatch, Content, 10, 5);
             ground = new Ground(new Vector2(4000, 100), new Vector2(-2000, 400), spriteBatch, Content);
             wallL = new Wall(new Vector2(20, 1480), new Vector2(-2000, -1000), spriteBatch, Content);
             wallR = new Wall(new Vector2(20, 1480), new Vector2(2000, -1000), spriteBatch, Content);
@@ -92,8 +96,11 @@ namespace Annihilation_Quest
                 L.Moving = new Vector2(-1, L.Moving.Y);
             else
                 L.Moving = new Vector2(0, L.Moving.Y);
-            if (ks.IsKeyDown(Keys.Up) && oldks.IsKeyUp(Keys.Up))
+            if (ks.IsKeyDown(Keys.Up) && oldks.IsKeyUp(Keys.Up) && L.Jump < 2)
+            {
+                L.Jump++;
                 L.Moving = new Vector2(L.Moving.X, -8);
+            }
             if (ks.IsKeyDown(Keys.C))
                 bonus += 1;
 
@@ -102,11 +109,13 @@ namespace Annihilation_Quest
             ground.Contact(L);
             wallL.Contact(L);
             wallR.Contact(L);
-            Vector2 P = L.Move();
+            N.Contact(L);
+            Vector2 P = -L.Move();
             foreach (Obstacle o in O)
             {
-                o.Scrolling(-P);
+                o.Scrolling(P);
             }
+            N.Scrolling(P);
             oldks = ks;
             base.Update(gameTime);
         }
@@ -124,6 +133,8 @@ namespace Annihilation_Quest
                 o.Draw();
             }
             L.Draw();
+            M.Draw();
+            N.Draw();
 
             base.Draw(gameTime);
         }
