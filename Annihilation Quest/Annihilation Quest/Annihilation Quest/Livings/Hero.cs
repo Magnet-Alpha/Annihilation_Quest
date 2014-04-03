@@ -20,7 +20,7 @@ namespace Annihilation_Quest
         public Hero(Vector2 size, Vector2 position, SpriteBatch sb, ContentManager c, int hp, int speed)
             : base(size, position, sb, c, hp, speed)
         {
-            sprites.Add(c.Load<Texture2D>("Test Hero"));
+            sprites.Add(c.Load<Texture2D>("Hero1"));
             this.Jump = 0;
             this.Invincibility = 0;
         }
@@ -35,10 +35,10 @@ namespace Annihilation_Quest
         {
             if (Invincibility != 0)
             {
-                if (Invincibility % 32 < 16)
+                if (Invincibility % 15 < 8)
                     base.Draw();
                 Invincibility++;
-                if (Invincibility == 128)
+                if (Invincibility == 60)
                     Invincibility = 0;
             }
             else
