@@ -24,7 +24,7 @@ namespace Annihilation_Quest
             this.Hitbox = new Rectangle((int)position.X, (int)position.Y, (int)size.X, (int)size.Y);
             this.Position = position;
             this.sb = sb;
-            sprites.Add(c.Load<Texture2D>("Test Weapon"));
+            sprites.Add(c.Load<Texture2D>("Sword1"));
         }
 
         public void Draw()

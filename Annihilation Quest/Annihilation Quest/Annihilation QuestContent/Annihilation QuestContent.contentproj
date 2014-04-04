@@ -56,13 +56,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Test Weapon.png">
-      <Name>Test Weapon</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Test Monster.png">
       <Name>Test Monster</Name>
       <Importer>TextureImporter</Importer>
@@ -72,6 +65,13 @@
   <ItemGroup>
     <Compile Include="Hero1.png">
       <Name>Hero1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sword1.png">
+      <Name>Sword1</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
