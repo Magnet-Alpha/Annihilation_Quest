@@ -25,6 +25,7 @@ namespace Annihilation_Quest
         Wall wallL;
         Wall wallR;
         Wall wallU;
+        HUD hud;
         KeyboardState oldks;
         List<Obstacle> O = new List<Obstacle>();
 
@@ -65,6 +66,8 @@ namespace Annihilation_Quest
             O.Add(ground);
             O.Add(wallL);
             O.Add(wallR);
+            hud = new HUD(spriteBatch, Content);
+            
             // TODO: use this.Content to load your game content here
         }
 
@@ -106,11 +109,12 @@ namespace Annihilation_Quest
 
             L.SpeedBonus(bonus);
             L.Gravity(gameTime);
-            ground.Contact(L);
-            wallL.Contact(L);
-            wallR.Contact(L);
+            Vector2 P = new Vector2();
+            P += -ground.Contact(L);
+            P += -wallL.Contact(L);
+            P += -wallR.Contact(L);
             N.Contact(L);
-            Vector2 P = -L.Move();
+            P += -L.Move();
             foreach (Obstacle o in O)
             {
                 o.Scrolling(P);
@@ -135,6 +139,7 @@ namespace Annihilation_Quest
             L.Draw();
             M.Draw();
             N.Draw();
+            hud.Draw();
 
             base.Draw(gameTime);
         }

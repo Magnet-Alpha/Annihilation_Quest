@@ -107,6 +107,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HUD.cs" />
     <Compile Include="Obstacles\Ground.cs" />
     <Compile Include="Livings\Hero.cs" />
     <Compile Include="Livings\Living.cs" />
