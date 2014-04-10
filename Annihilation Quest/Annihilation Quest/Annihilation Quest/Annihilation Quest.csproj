@@ -107,6 +107,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enums.cs" />
+    <Compile Include="Obstacles\Breakable.cs" />
     <Compile Include="HUD.cs" />
     <Compile Include="Obstacles\Ground.cs" />
     <Compile Include="Livings\Hero.cs" />

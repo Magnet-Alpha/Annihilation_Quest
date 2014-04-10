@@ -23,8 +23,11 @@ namespace Annihilation_Quest
         public int Speed { get; set; }
         protected int ospeed;
         public List<Texture2D> sprites = new List<Texture2D>();
+        public Etat State { get; set; }
+        public int Atk { get; set; }
+        public int Side { get; set; }
 
-        public Living(Vector2 size, Vector2 position, SpriteBatch sb, ContentManager c, int hp, int speed)
+        public Living(Vector2 size, Vector2 position, SpriteBatch sb, ContentManager c, int hp, int speed, int atk)
         {
             this.Hitbox = new Rectangle((int)position.X, (int)position.Y, (int)size.X, (int)size.Y);
             this.Position = position;
@@ -34,6 +37,9 @@ namespace Annihilation_Quest
             this.maxHP = hp;
             this.Speed = speed;
             this.ospeed = speed;
+            this.Atk = atk;
+            this.State = Etat.Alive;
+            this.Side = -1;
         }
 
         public Vector2 Move()
@@ -45,9 +51,18 @@ namespace Annihilation_Quest
 
         public virtual void Draw()
         {
-            sb.Begin();
-            sb.Draw(sprites[0], Hitbox, Color.White);
-            sb.End();
+            if (Side == -1)
+            {
+                sb.Begin();
+                sb.Draw(sprites[0], Hitbox, Color.White);
+                sb.End();
+            }
+            else
+            {
+                sb.Begin();
+                sb.Draw(sprites[0], Hitbox, new Rectangle(0, 0, 64, 128), Color.White, 0, Vector2.Zero, SpriteEffects.FlipHorizontally, 0);
+                sb.End();
+            }
         }
 
         public void Gravity(GameTime g)

@@ -14,10 +14,10 @@ namespace Annihilation_Quest
 {
     class Monster : Living
     {
-        public int Atk { get; set; }
+        public int Invincibility { get; set; }
 
-        public Monster(Vector2 size, Vector2 position, SpriteBatch sb, ContentManager c, int hp, int speed)
-            : base(size, position, sb, c, hp, speed)
+        public Monster(Vector2 size, Vector2 position, SpriteBatch sb, ContentManager c, int hp, int speed, int atk)
+            : base(size, position, sb, c, hp, speed, atk)
         {
             sprites.Add(c.Load<Texture2D>("Test Monster"));
         }
@@ -49,6 +49,26 @@ namespace Annihilation_Quest
                         L.Damage(Atk);
                 }
             }
+        }
+
+        public void Damage(int atk)
+        {
+            this.HP -= atk;
+            this.Invincibility = 1;
+        }
+
+        public override void Draw()
+        {
+            if (Invincibility != 0)
+            {
+                if (Invincibility % 15 < 8)
+                    base.Draw();
+                Invincibility++;
+                if (Invincibility == 60)
+                    Invincibility = 0;
+            }
+            else
+                base.Draw();
         }
     }
 }

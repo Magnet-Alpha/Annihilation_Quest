@@ -17,8 +17,8 @@ namespace Annihilation_Quest
         public int Jump { get; set; }
         public int Invincibility { get; set; }
 
-        public Hero(Vector2 size, Vector2 position, SpriteBatch sb, ContentManager c, int hp, int speed)
-            : base(size, position, sb, c, hp, speed)
+        public Hero(Vector2 size, Vector2 position, SpriteBatch sb, ContentManager c, int hp, int speed, int atk)
+            : base(size, position, sb, c, hp, speed, atk)
         {
             sprites.Add(c.Load<Texture2D>("Hero1"));
             this.Jump = 0;
