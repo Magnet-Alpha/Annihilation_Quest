@@ -14,6 +14,7 @@ namespace Annihilation_Quest
 {
     class IGame : IMenu
     {
+        Game1 game;
         ContentManager Content;
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
@@ -30,8 +31,9 @@ namespace Annihilation_Quest
         List<Obstacle> O = new List<Obstacle>();
         int ancbonus = 1;
 
-        public IGame(GraphicsDeviceManager graphics, SpriteBatch sb, ContentManager Content)
+        public IGame(Game1 game, GraphicsDeviceManager graphics, SpriteBatch sb, ContentManager Content)
         {
+            this.game = game;
             this.graphics = graphics;
             this.spriteBatch = sb;
             this.Content = Content;
@@ -96,6 +98,8 @@ namespace Annihilation_Quest
                 M.Attacking = 1;
                 M.NumHit++;
             }
+            if (ks.IsKeyDown(Keys.Escape) && oldks.IsKeyUp(Keys.Escape))
+                game.menu = new IPrinc(game, graphics, spriteBatch, Content);
 
             ancbonus = bonus;
             L.SpeedBonus(bonus);

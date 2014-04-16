@@ -18,7 +18,7 @@ namespace Annihilation_Quest
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        IMenu menu;
+        public IMenu menu;
 
         public Game1()
         {
@@ -48,7 +48,7 @@ namespace Annihilation_Quest
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             // TODO: use this.Content to load your game content here
-            this.menu = new IGame(graphics, spriteBatch, Content);
+            this.menu = new IPrinc(this, graphics, spriteBatch, Content);
         }
 
         /// <summary>

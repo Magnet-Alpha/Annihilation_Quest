@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Annihilation_Quest
 {
-    interface IMenu
+    public interface IMenu
     {
         void LoadContent();
         void Initialize();
@@ -20,4 +20,6 @@ namespace Annihilation_Quest
         void Update(GameTime gameTime);
         void Draw(GameTime gameTime);
     }
+
+
 }
