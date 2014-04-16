@@ -61,6 +61,7 @@ namespace Annihilation_Quest
             O.Add(wallR);
             O.Add(Box);
             hud = new HUD(spriteBatch, Content);
+            oldks = Keyboard.GetState();
         }
 
         public void UnloadContent()
