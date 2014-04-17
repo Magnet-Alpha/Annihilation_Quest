@@ -31,6 +31,7 @@ namespace Annihilation_Quest
         List<Obstacle> O = new List<Obstacle>();
         int ancbonus = 1;
         bool pause;
+        Random a;
 
         public IGame(Game1 game, GraphicsDeviceManager graphics, SpriteBatch sb, ContentManager Content)
         {
@@ -64,6 +65,7 @@ namespace Annihilation_Quest
             hud = new HUD(spriteBatch, Content);
             oldks = Keyboard.GetState();
             pause = false;
+            a = new Random();
         }
 
         public void UnloadContent()
@@ -110,6 +112,11 @@ namespace Annihilation_Quest
             L.SpeedBonus(bonus);
             L.Gravity(gameTime);
             M.PassingAttack();
+            if (N.IA == 0)
+            {
+                N.IARandom(a.Next(-1, 2));
+            }
+            N.MMoving();
             Vector2 P = new Vector2();
             foreach (Obstacle o in O)
             {

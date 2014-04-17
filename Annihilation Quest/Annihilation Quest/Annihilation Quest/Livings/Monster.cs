@@ -15,10 +15,12 @@ namespace Annihilation_Quest
     class Monster : Living
     {
         public int Invincibility { get; set; }
+        public int IA { get; set; }
 
         public Monster(Vector2 size, Vector2 position, SpriteBatch sb, ContentManager c, int hp, int speed, int atk)
             : base(size, position, sb, c, hp, speed, atk)
         {
+            IA = 0;
         }
 
         public void Scrolling(Vector2 P)
@@ -58,6 +60,7 @@ namespace Annihilation_Quest
 
         public override void Draw()
         {
+            IA = (IA + 1) % 60;
             if (Invincibility != 0)
             {
                 if (Invincibility % 15 < 8)
@@ -68,6 +71,17 @@ namespace Annihilation_Quest
             }
             else
                 base.Draw();
+        }
+
+        public void IARandom(int a)
+        {
+            this.Moving = new Vector2(a, 0);
+            IA = 1;
+        }
+
+        public void MMoving()
+        {
+            this.Position += this.Move();
         }
     }
 }

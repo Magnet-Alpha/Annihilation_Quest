@@ -107,14 +107,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Button.cs" />
+    <Compile Include="Menus\Button.cs" />
     <Compile Include="Enums.cs" />
-    <Compile Include="IPrinc.cs" />
+    <Compile Include="Menus\IPrinc.cs" />
     <Compile Include="Menus\IGame.cs" />
     <Compile Include="Menus\IMenu.cs" />
-    <Compile Include="Monsters.cs" />
+    <Compile Include="Livings\Monsters.cs" />
     <Compile Include="Obstacles\Breakable.cs" />
-    <Compile Include="HUD.cs" />
+    <Compile Include="Items\HUD.cs" />
     <Compile Include="Obstacles\Ground.cs" />
     <Compile Include="Livings\Hero.cs" />
     <Compile Include="Livings\Living.cs" />
