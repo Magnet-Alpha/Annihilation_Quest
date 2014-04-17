@@ -16,6 +16,7 @@ namespace Annihilation_Quest
     {
         public int Jump { get; set; }
         public int Invincibility { get; set; }
+        public HUD TheOne { get; set; }
 
         public Hero(Vector2 size, Vector2 position, SpriteBatch sb, ContentManager c, int hp, int speed, int atk)
             : base(size, position, sb, c, hp, speed, atk)
@@ -23,6 +24,7 @@ namespace Annihilation_Quest
             sprites.Add(c.Load<Texture2D>("Hero1"));
             this.Jump = 0;
             this.Invincibility = 0;
+            this.TheOne = new HUD(sb, c);
         }
 
         public void Damage(int atk)
@@ -43,6 +45,11 @@ namespace Annihilation_Quest
             }
             else
                 base.Draw();
+        }
+
+        public void DrawHUD()
+        {
+            TheOne.Draw(this.HP, this.maxHP);
         }
 
     }

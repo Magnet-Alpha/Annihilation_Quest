@@ -60,7 +60,7 @@ namespace Annihilation_Quest
             else
             {
                 sb.Begin();
-                sb.Draw(sprites[0], Hitbox, new Rectangle(0, 0, 64, 128), Color.White, 0, Vector2.Zero, SpriteEffects.FlipHorizontally, 0);
+                sb.Draw(sprites[0], Hitbox, new Rectangle(0, 0, Hitbox.Width, Hitbox.Height), Color.White, 0, Vector2.Zero, SpriteEffects.FlipHorizontally, 0);
                 sb.End();
             }
         }

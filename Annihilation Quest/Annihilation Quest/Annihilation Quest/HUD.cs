@@ -14,6 +14,7 @@ namespace Annihilation_Quest
 {
     class HUD
     {
+        public SpriteFont font;
         public SpriteBatch sb;
         public List<Texture2D> sprites = new List<Texture2D>();
 
@@ -21,12 +22,14 @@ namespace Annihilation_Quest
         {
             this.sb = sb;
             sprites.Add(c.Load<Texture2D>("Sword1"));
+            this.font = c.Load<SpriteFont>("Font1");
         }
 
-        public void Draw()
+        public void Draw(int hp, int maxhp)
         {
             sb.Begin();
             sb.Draw(sprites[0], new Rectangle(0, 0, 128, 32), Color.White);
+            sb.DrawString(font, hp.ToString() + "/" + maxhp.ToString(), new Vector2(0, 32), Color.White);
             sb.End();
         }
     }

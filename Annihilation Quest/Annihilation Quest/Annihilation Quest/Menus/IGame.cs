@@ -20,7 +20,7 @@ namespace Annihilation_Quest
         SpriteBatch spriteBatch;
         Hero L;
         Weapon M;
-        Monster N;
+        Slime N;
         Ground ground;
         Wall wallL;
         Wall wallR;
@@ -30,6 +30,7 @@ namespace Annihilation_Quest
         KeyboardState oldks;
         List<Obstacle> O = new List<Obstacle>();
         int ancbonus = 1;
+        bool pause;
 
         public IGame(Game1 game, GraphicsDeviceManager graphics, SpriteBatch sb, ContentManager Content)
         {
@@ -50,7 +51,7 @@ namespace Annihilation_Quest
         {
             L = new Hero(new Vector2(64, 128), new Vector2(360, 272), spriteBatch, Content, 10, 5, 5);
             M = new Weapon(new Vector2(32, 64), new Vector2(L.Position.X + 16, L.Position.Y + 64), spriteBatch, Content, L);
-            N = new Monster(new Vector2(64, 128), new Vector2(800, 272), spriteBatch, Content, 10, 5, 5);
+            N = new Slime(new Vector2(800, 272 + 64), spriteBatch, Content);
             ground = new Ground(new Vector2(4000, 100), new Vector2(-2000, 400), spriteBatch, Content);
             wallL = new Wall(new Vector2(20, 1480), new Vector2(-2000, -1000), spriteBatch, Content);
             wallR = new Wall(new Vector2(20, 1480), new Vector2(2000, -1000), spriteBatch, Content);
@@ -62,6 +63,7 @@ namespace Annihilation_Quest
             O.Add(Box);
             hud = new HUD(spriteBatch, Content);
             oldks = Keyboard.GetState();
+            pause = false;
         }
 
         public void UnloadContent()
@@ -71,6 +73,8 @@ namespace Annihilation_Quest
 
         public void Update(GameTime gameTime)
         {
+            if (pause)
+                Pause();
             int bonus = 1;
             KeyboardState ks = Keyboard.GetState();
             if (ks.IsKeyDown(Keys.Right) && M.Attacking == 0)
@@ -100,7 +104,7 @@ namespace Annihilation_Quest
                 M.NumHit++;
             }
             if (ks.IsKeyDown(Keys.Escape) && oldks.IsKeyUp(Keys.Escape))
-                game.menu = new IPrinc(game, graphics, spriteBatch, Content);
+                game.menu = new IPrinc(game, graphics, spriteBatch, Content, this);
 
             ancbonus = bonus;
             L.SpeedBonus(bonus);
@@ -129,10 +133,6 @@ namespace Annihilation_Quest
             oldks = ks;
         }
 
-        /// <summary>
-        /// This is called when the game should draw itself.
-        /// </summary>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public void Draw(GameTime gameTime)
         {
             foreach (Obstacle o in O)
@@ -142,7 +142,11 @@ namespace Annihilation_Quest
             L.Draw();
             M.Draw();
             N.Draw();
-            hud.Draw();
+            L.DrawHUD();
+        }
+
+        public void Pause()
+        {
         }
     }
 }

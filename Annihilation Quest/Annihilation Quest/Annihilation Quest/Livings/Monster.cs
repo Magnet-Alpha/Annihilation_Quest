@@ -19,7 +19,6 @@ namespace Annihilation_Quest
         public Monster(Vector2 size, Vector2 position, SpriteBatch sb, ContentManager c, int hp, int speed, int atk)
             : base(size, position, sb, c, hp, speed, atk)
         {
-            sprites.Add(c.Load<Texture2D>("Test Monster"));
         }
 
         public void Scrolling(Vector2 P)
@@ -36,15 +35,15 @@ namespace Annihilation_Quest
                 {
                         L.Damage(Atk);
                 }
-                if (this.Hitbox.Right >= L.Hitbox.Left && this.Hitbox.Left < L.Hitbox.Left && this.Hitbox.Right < L.Hitbox.Right && this.Hitbox.Top < L.Hitbox.Bottom && this.Hitbox.Bottom > L.Hitbox.Top)
+                else if (this.Hitbox.Right >= L.Hitbox.Left && this.Hitbox.Left < L.Hitbox.Left && this.Hitbox.Right < L.Hitbox.Right && this.Hitbox.Top < L.Hitbox.Bottom && this.Hitbox.Bottom > L.Hitbox.Top)
                 {
                         L.Damage(Atk);
                 }
-                if (this.Hitbox.Left <= L.Hitbox.Right && this.Hitbox.Right > L.Hitbox.Right && this.Hitbox.Left > L.Hitbox.Left && this.Hitbox.Top < L.Hitbox.Bottom && this.Hitbox.Bottom > L.Hitbox.Top)
+                else if (this.Hitbox.Left <= L.Hitbox.Right && this.Hitbox.Right > L.Hitbox.Right && this.Hitbox.Left > L.Hitbox.Left && this.Hitbox.Top < L.Hitbox.Bottom && this.Hitbox.Bottom > L.Hitbox.Top)
                 {
                         L.Damage(Atk);
                 }
-                if (this.Hitbox.Bottom >= L.Hitbox.Top && this.Hitbox.Top < L.Hitbox.Top && this.Hitbox.Bottom < L.Hitbox.Bottom && this.Hitbox.Right > L.Hitbox.Left && this.Hitbox.Left < L.Hitbox.Right)
+                else if (this.Hitbox.Bottom >= L.Hitbox.Top && this.Hitbox.Top < L.Hitbox.Top && this.Hitbox.Bottom < L.Hitbox.Bottom && this.Hitbox.Right > L.Hitbox.Left && this.Hitbox.Left < L.Hitbox.Right)
                 {
                         L.Damage(Atk);
                 }

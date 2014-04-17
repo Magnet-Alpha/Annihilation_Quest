@@ -25,8 +25,9 @@ namespace Annihilation_Quest
         int choice;
         KeyboardState oldks;
         bool lol;
+        IGame go;
 
-        public IPrinc(Game1 game, GraphicsDeviceManager graphics, SpriteBatch sb, ContentManager Content)
+        public IPrinc(Game1 game, GraphicsDeviceManager graphics, SpriteBatch sb, ContentManager Content, IGame go)
         {
             this.game = game;
             this.graphics = graphics;
@@ -34,6 +35,7 @@ namespace Annihilation_Quest
             this.Content = Content;
             this.Initialize();
             this.LoadContent();
+            this.go = go;
         }
 
         public void Initialize()
@@ -81,7 +83,12 @@ namespace Annihilation_Quest
                 if (LB[choice] == newgame)
                     game.menu = new IGame(game, graphics, spriteBatch, Content);
                 if (LB[choice] == continu)
-                    lol = true;
+                {
+                    if (go == null)
+                        lol = true;
+                    else
+                        game.menu = go;
+                }
                 if (LB[choice] == exit)
                     game.Exit();
             }

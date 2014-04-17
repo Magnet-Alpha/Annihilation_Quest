@@ -48,7 +48,7 @@ namespace Annihilation_Quest
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             // TODO: use this.Content to load your game content here
-            this.menu = new IPrinc(this, graphics, spriteBatch, Content);
+            this.menu = new IPrinc(this, graphics, spriteBatch, Content, null);
         }
 
         /// <summary>
